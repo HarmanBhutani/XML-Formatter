@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xml Beautifier - Harman</title>
+    <style>
+
+        textarea.box {
+            flex-shrink: 0;
+            resize: none;
+            width: 970px;
+            height: 200px;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+
+        div.column {
+            display: flex;
+            flex-direction: column;;
+        }
+
+        button {
+            margin: 20px;
+            width: 120px;
+            height: 60px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="column">
+    T-Mobile XML Beautifier <br/>
+</div>
+
+<div class="column">
+    <span>source XML File</span>
+    <textarea id="text-input" class="box"></textarea>
+</div>
+
+
+<div class="column">
+    <button id="button-run">Beautify XML !!</button>
+</div>
+
+<div class="column">
+    <span>Formatted XML</span>
+    <textarea id="text-output" class="box" readonly></textarea>
+</div>
+
+<br>
+
+
+<script src="XmlBeautify.js"></script>
+
+
+<script>
+
+    var xml ="";
+
+    var textInput = document.querySelector("#text-input");
+    var textOutput = document.querySelector("#text-output");
+    var buttonRun = document.querySelector("#button-run");
+
+    textInput.textContent = xml;
+
+    var funcRun = function (evt) {
+
+        var resultXmlText = new XmlBeautify().beautify(textInput.value, {
+            indent: "  ",  //indent pattern like white spaces
+            useSelfClosingElement: true //true:use self-closing element when empty element.
+        });
+
+        textOutput.textContent = resultXmlText
+
+    }
+    buttonRun.addEventListener("click", funcRun);
+
+</script>
+</body>
+</html>
